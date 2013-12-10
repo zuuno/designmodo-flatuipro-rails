@@ -10,7 +10,7 @@ module Flatuipro
 
       def copy_assets
         gem_assets_dir = "vendor/assets/"
-        #File.expand_path("../../../../../app/assets", __FILE__)
+        demo_assets_dir = File.expand_path("../../../../../app/assets", __FILE__)
         pro_dir = flatuipro_dir
 
         unless File.exist?(File.join(pro_dir, "index.html"))
@@ -29,9 +29,9 @@ module Flatuipro
         directory File.join(pro_dir, "fonts"),  File.join(gem_assets_dir, "fonts")
 
         # Demo page assets
-        copy_file File.join(pro_dir, "index.html"),           File.join(gem_assets_dir, "demo", "index.html")
-        copy_file File.join(pro_dir, "js", "application.js"), File.join(gem_assets_dir, "demo", "flatuipro-demo.js")
-        copy_file File.join(pro_dir, "less", "demo.less"),    File.join(gem_assets_dir, "demo", "flatuipro-demo.less")
+        copy_file File.join(pro_dir, "index.html"),           File.join(demo_assets_dir, "demo", "index.html")
+        copy_file File.join(pro_dir, "js", "application.js"), File.join(demo_assets_dir, "demo", "flatuipro-demo.js")
+        copy_file File.join(pro_dir, "less", "demo.less"),    File.join(demo_assets_dir, "demo", "flatuipro-demo.less")
       end
 
       def add_assets
@@ -85,6 +85,7 @@ module Flatuipro
       def patch_assets
         #gem_assets_dir = File.expand_path("../../../../../app/assets", __FILE__)
         gem_assets_dir = "vendor/assets/"
+        demo_assets_dir = File.expand_path("../../../../../app/assets", __FILE__)
         
         # LESS patches
         # switch.less
@@ -102,7 +103,7 @@ module Flatuipro
         gsub_file File.join(gem_assets_dir, "less", "fonts.less"), /url\('\.\.\/fonts\//, "font-url('"
         
         # Demo page patches
-        file = File.join(gem_assets_dir, "demo", "index.html")
+        file = File.join(demo_assets_dir, "demo", "index.html")
         # Fix image links
         gsub_file file, /<img src="images\/.+?>/ do |s|
           match = /images\/(.+?)"/.match(s)
