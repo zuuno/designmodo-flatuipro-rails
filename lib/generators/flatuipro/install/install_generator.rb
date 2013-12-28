@@ -18,7 +18,10 @@ module Flatuipro
         end
         if File.directory?(File.join(pro_dir, "Flat-UI-Pro-1.2.2"))
           pro_dir = File.join(pro_dir, "Flat-UI-Pro-1.2.2")
+        elsif File.directory?(File.join(pro_dir, "Flat-UI-Pro-1.2.3"))
+          pro_dir = File.join(pro_dir, "Flat-UI-Pro-1.2.3")
         end
+        
         unless File.directory?(pro_dir) && File.exist?(File.join(pro_dir, "index.html"))
           raise "Invalid Flat UI Pro directory"
         end
